@@ -17,8 +17,13 @@ class Airplane
   end
 
   def takeoff
-    #pseudo
+    if @engine_on == false
+      "Engine not on yet"
+    else
+      "Airplane takeoff complete"
+    end
   end
+
 
   def landing
     #pseudo
