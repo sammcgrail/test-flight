@@ -1,7 +1,9 @@
 require_relative "../../lib/airplane"
+require "pry"
 
 describe Airplane do
-let(:my_plane) {Airplane.new("cesna", 10, 150)}
+let(:my_plane) {Airplane.new("cesna", 10, 150, 100)}
+let(:low_fuel_test_plane) {Airplane.new("cesna", 10, 150, 9)}
   describe "#initialization" do
     # it 'assigns value to the type variable of an Airplane class instance' do
     #   my_plane = Airplane.new("cesna", 10, 150)
@@ -22,6 +24,9 @@ let(:my_plane) {Airplane.new("cesna", 10, 150)}
       my_plane.start
       expect(my_plane.start).to eq("Engine already running")
     end
+    it 'returns an Not enough fuel error if there is not enough fuel' do
+      expect(low_fuel_test_plane.start).to eq("Not enough fuel")
+    end
   end
   describe "#takeoff" do
     it 'returns engine not on yet for takeoff attempt with engine off' do
@@ -30,6 +35,10 @@ let(:my_plane) {Airplane.new("cesna", 10, 150)}
     it 'returns airplane takeoff complete if airplane engine is on' do
       my_plane.start
       expect(my_plane.takeoff).to eq("Airplane takeoff complete")
+    end
+    it 'returns an Not enough fuel error if there is not enough fuel' do
+      my_plane.start
+      expect(low_fuel_test_plane.takeoff).to eq("Not enough fuel")
     end
   end
   describe "#land" do
@@ -44,6 +53,11 @@ let(:my_plane) {Airplane.new("cesna", 10, 150)}
       my_plane.start
       my_plane.takeoff
       expect(my_plane.landing).to eq("Landing complete")
+    end
+    it 'returns an Not enough fuel error if there is not enough fuel' do
+      my_plane.start
+      my_plane.takeoff
+      expect(low_fuel_test_plane.takeoff).to eq("Not enough fuel")
     end
   end
 end
