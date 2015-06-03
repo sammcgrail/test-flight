@@ -6,6 +6,7 @@ class Airplane
     @horsepower = horsepower
     @engine_on = engine_on
     @flying = flying
+    @fuel = 100
   end
   def start
     if @engine_on == false
@@ -33,3 +34,10 @@ class Airplane
     end
   end
 end
+
+
+
+
+# extra credit fuel internat attribute
+
+# maybe fix hardcoded strings with something prettier
